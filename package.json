@@ -1,0 +1,95 @@
+{
+  "name": "jsg-hubdev-manager",
+  "displayName": "JSG HubDev Manager",
+  "description": "Manage HubDev local development sites from VS Code: link/unlink, start/stop, renew SSL and open in browser",
+  "version": "1.0.0",
+  "publisher": "JeffersonGoncalves",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jeffersongoncalves/hubdev-manager-vscode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jeffersongoncalves/hubdev-manager-vscode/issues"
+  },
+  "homepage": "https://github.com/jeffersongoncalves/hubdev-manager-vscode#readme",
+  "icon": "resources/icon.png",
+  "keywords": [
+    "laravel",
+    "hubdev",
+    "devhub",
+    "php",
+    "local development"
+  ],
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "workspaceContains:artisan",
+    "workspaceContains:composer.json"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      { "command": "hubdev.link", "title": "Link Site", "category": "HubDev", "icon": "$(link)" },
+      { "command": "hubdev.unlink", "title": "Unlink Site", "category": "HubDev", "icon": "$(debug-disconnect)" },
+      { "command": "hubdev.start", "title": "Start Site", "category": "HubDev", "icon": "$(debug-start)" },
+      { "command": "hubdev.stop", "title": "Stop Site", "category": "HubDev", "icon": "$(debug-stop)" },
+      { "command": "hubdev.secure", "title": "Renew SSL Certificates", "category": "HubDev", "icon": "$(lock)" },
+      { "command": "hubdev.openInBrowser", "title": "Open in Browser", "category": "HubDev", "icon": "$(globe)" },
+      { "command": "hubdev.openApp", "title": "Open HubDev App", "category": "HubDev", "icon": "$(window)" },
+      { "command": "hubdev.refresh", "title": "Refresh", "category": "HubDev", "icon": "$(refresh)" },
+      { "command": "hubdev.focus", "title": "Show HubDev Manager", "category": "HubDev" }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        { "id": "hubdevManager", "title": "HubDev", "icon": "resources/hubdev.svg" }
+      ]
+    },
+    "views": {
+      "hubdevManager": [
+        { "id": "hubdev.view", "name": "Site" }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        { "command": "hubdev.link", "when": "view == hubdev.view && hubdev.installed && !hubdev.linked", "group": "navigation@1" },
+        { "command": "hubdev.start", "when": "view == hubdev.view && hubdev.linked && !hubdev.active", "group": "navigation@1" },
+        { "command": "hubdev.stop", "when": "view == hubdev.view && hubdev.active", "group": "navigation@1" },
+        { "command": "hubdev.openInBrowser", "when": "view == hubdev.view && hubdev.linked", "group": "navigation@2" },
+        { "command": "hubdev.refresh", "when": "view == hubdev.view", "group": "navigation@3" },
+        { "command": "hubdev.secure", "when": "view == hubdev.view && hubdev.linked", "group": "1_site@1" },
+        { "command": "hubdev.unlink", "when": "view == hubdev.view && hubdev.linked", "group": "1_site@2" },
+        { "command": "hubdev.openApp", "when": "view == hubdev.view && hubdev.installed", "group": "2_app@1" }
+      ],
+      "commandPalette": [
+        { "command": "hubdev.focus", "when": "false" }
+      ]
+    }
+  },
+  "scripts": {
+    "compile": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "package": "node esbuild.js --production",
+    "typecheck": "tsc -p . --noEmit",
+    "test": "tsc -p . && node --test \"out/test/**/*.test.js\"",
+    "lint": "eslint src test",
+    "vscode:prepublish": "pnpm run package"
+  },
+  "dependencies": {
+    "yaml": "^2.8.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22.0.0",
+    "@types/vscode": "~1.85.0",
+    "@typescript-eslint/eslint-plugin": "^8.70.0",
+    "@typescript-eslint/parser": "^8.70.0",
+    "esbuild": "^0.28.2",
+    "eslint": "^10.10.0",
+    "typescript": "~6.0.3"
+  }
+}
