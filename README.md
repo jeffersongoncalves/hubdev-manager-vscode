@@ -4,6 +4,9 @@
 
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support-FFDD00?style=flat-square&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/jeffersongoncalves)
 
+[![VS Code Marketplace](https://img.shields.io/visual-studio-marketplace/v/JeffersonGoncalves.jsg-hubdev-manager.svg)](https://marketplace.visualstudio.com/items?itemName=JeffersonGoncalves.jsg-hubdev-manager)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/JeffersonGoncalves.jsg-hubdev-manager.svg)](https://marketplace.visualstudio.com/items?itemName=JeffersonGoncalves.jsg-hubdev-manager)
+
 > Manage your HubDev local development sites directly from VS Code.
 
 **JSG HubDev Manager** integrates [HubDev](https://hubdev.io) into VS Code: see whether the open project is registered in HubDev's central `sites.yml`, link/unlink it, start/stop it, renew SSL and open it in the browser. It is the VS Code port of the [HubDev Manager](https://github.com/jeffersongoncalves/hubdev-manager-plugin) JetBrains plugin.
